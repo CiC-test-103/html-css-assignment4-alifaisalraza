@@ -17,7 +17,7 @@ body {
   /* 3. Add accessible line-height */
   line-height: 1.5;
   /* 4. Improve text rendering */
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;  
 }
 /* 5. Improve media defaults */
 img, picture, video, canvas, svg {
@@ -47,44 +47,70 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /** Your CSS Below **/
-.resultpage{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
+body {
+  background-color: var(--clr-paleBlue);
 }
 
-.resultpage .part1{
+.resultpage{
   box-sizing: border-box;
-  background: linear-gradient(to bottom, var(--gra-lightSlateBlue), var(--gra-lightRoyalBlue));
-  border-radius: 2%;
-  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 20vh 20vw;
+  height: calc(100vh - 40vh); /* full viewport height minus top+bottom margins */
+} 
+
+@media (max-width: 375px) {
+  .resultpage{
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    margin: 2vh 5vw; /* Adjust margins for mobile */
+  }  
+}
+
+.resultpage .part1,
+.resultpage .part2 {
+  box-sizing: border-box;
+  border-radius: 3%;
+  height: auto;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.resultpage .part1 {
+  background: linear-gradient(to bottom, var(--gra-lightSlateBlue), var(--gra-lightRoyalBlue));
   justify-content: center;
   align-items: center;
 }
 
-.resultpage .part1 .innerpart1{
+.resultpage .part2{
+  background: var(--clr-white);
+}
+
+.resultpage .part1 .innerpart1,
+.resultpage .part2 .innerpart2{
   box-sizing: border-box;
   display: flex;
   flex-flow: column;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-top: 7.5%;
-  margin-bottom: 7.5%;
-  height: 85%;
-  width: 80%;
+  margin: 10% 5%;
   font-family: var(--fs-base);
+  flex: 1;
+}
+
+.resultpage .part1 .innerpart1{
   align-items: center;
-  gap: 2rem;
+  justify-content: space-between;
 }
 
 .resultpage .part1 .innerpart1 .head{
   box-sizing: border-box;
   font-weight: var(--fw-regular);
-  font-size: 1.5rem;
+  font-size: clamp(0.75rem, 2.5vw, 2rem);
   width: 100%;
   text-align: center;
-  margin-bottom: 1rem;
+  /*margin-bottom: 1rem;*/
   color: var(--clr-lightLavender);
 }
 
@@ -92,13 +118,13 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: border-box;
   border-radius: 50%;
   background-color: linear-gradient(to bottom, var(--gra-violetBlue), var(--gra-persianBlue));
-  width: 40%;
+  width: 50%;
   aspect-ratio: 1/1;
   display: grid;
   grid-template-rows: 0.75fr auto 1fr;
   box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
   transition: box-shadow 0.3s ease-in-out;
-  margin-bottom: 0.5rem;
+  /*margin-bottom: 0.5rem;*/
 }
 
 .resultpage .part1 .innerpart1 .circle .score{
@@ -117,7 +143,7 @@ h1, h2, h3, h4, h5, h6 {
 .resultpage .part1 .innerpart1 .circle .score.bottom {
   box-sizing: border-box;
   font-weight: var(--fw-regular);
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
   justify-self: center;
   align-self: center;
   color: var(--clr-lightLavender);
@@ -126,7 +152,7 @@ h1, h2, h3, h4, h5, h6 {
 .resultpage .part1 .innerpart1 .circle .score.middle {
   box-sizing: border-box;
   font-weight: var(--fw-black);
-  font-size: 5rem;
+  font-size: clamp(3rem, 5vw, 6rem);
   justify-self: center;
   align-self: center;
   line-height: 1;
@@ -143,27 +169,110 @@ h1, h2, h3, h4, h5, h6 {
 .resultpage .part1 .innerpart1 .comment.top{
   box-sizing: border-box;
   font-weight: var(--fw-bold);
-  font-size: 2rem;
+  font-size: clamp(1rem, 2.5vw, 2rem);
   text-align: center;
-  margin-bottom: 1rem;
+  /*margin-bottom: 1rem; */ 
   color: var(--clr-white);
 }
 
 .resultpage .part1 .innerpart1 .comment.bottom{
   box-sizing: border-box;
   font-weight: var(--fw-regular);
-  font-size: 1rem;
+  font-size: clamp(.5rem, 2.5vw, 1.5rem);
   text-align: center;
   word-wrap: break-word;
   color: var(--clr-lightLavender);
 }
 
-
-.resultpage .part2{
-  background: yellow;
+.resultpage .part2 .innerpart2 .summary{
+  box-sizing: border-box;
+  font-weight: var(--fw-bold);
+  font-size: clamp(.5rem, 2.5vw, 2rem);
   width: 100%;
-  height: 100%;
+  text-align: left;
+  color: var(--clr-darkGrayBlue);
+  margin-bottom: 0.75rem ;
 }
+
+.resultpage .part2 .innerpart2 .list{
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.resultpage .part2 .innerpart2 .list .listitem{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10%;
+  font-size: clamp(.25rem, 2.5vw, 1.5rem);
+}
+
+.resultpage .part2 .innerpart2 .list .listitem .score {
+  color: color-mix(in srgb, var(--clr-darkGrayBlue) 90%, white);
+}
+
+.resultpage .part2 .innerpart2 .list .listitem .itemtype {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* spacing between icon and text */
+  font-weight: var(--fw-regular);
+}
+
+.resultpage .part2 .innerpart2 .list .listitem .itemtype .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.resultpage .part2 .innerpart2 .list .listitem.Reaction {
+  background-color: color-mix(in srgb, var(--clr-lightRed) 5%, white);
+}
+
+.resultpage .part2 .innerpart2 .list .listitem.Reaction .itemtype{
+  color: var(--clr-lightRed);
+}
+
+.resultpage .part2 .innerpart2 .list .listitem.Memory {
+  background-color: color-mix(in srgb, var(--clr-orangeYellow) 5%, white);
+}
+
+.resultpage .part2 .innerpart2 .list .listitem.Memory .itemtype{
+  color: var(--clr-orangeYellow);
+}
+
+
+.resultpage .part2 .innerpart2 .list .listitem.Verbal {
+  background-color: color-mix(in srgb, var(--clr-greenTeal) 5%, white);
+}
+
+.resultpage .part2 .innerpart2 .list .listitem.Verbal .itemtype{
+  color: var(--clr-greenTeal);
+}
+
+.resultpage .part2 .innerpart2 .list .listitem.Visual {
+  background-color: color-mix(in srgb, var(--clr-cobaltBlue) 5%, white);
+}
+
+.resultpage .part2 .innerpart2 .list .listitem.Visual .itemtype{
+  color: var(--clr-cobaltBlue);
+}
+
+.resultpage .part2 .innerpart2 .Continue{
+  box-sizing: border-box;
+  border-radius: 1rem;
+  background-color: var(--clr-darkGrayBlue);
+  font-size: clamp(0.5rem, 2.5vw, 1.75rem);
+  color: var(--clr-white);
+  width: 20vw;
+  height: 5vh;
+  align-self: center;
+}
+
+
 /** Attribution CSS **/
 .attribution { font-size: 11px; text-align: center; }
 .attribution a { color: hsl(228, 45%, 44%); }
